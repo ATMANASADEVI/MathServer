@@ -35,19 +35,19 @@ Publish the website in the given URL.
 ```
 math.html
 
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Power</title>
+    <title>Power Calculator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color:burlywood;
+            background-color: burlywood;
             margin: 0;
             padding: 20px;
         }
         .container {
+            
             max-width: 400px;
             margin: auto;
             background: beige;
@@ -68,14 +68,14 @@ math.html
             width: 100%;
             padding: 10px;
             margin-top: 5px;
-            border: 1px solid #ddd;
+            border: 1px solid #ccc;
             border-radius: 5px;
         }
         button {
             width: 100%;
             padding: 10px;
             margin-top: 20px;
-            background-color:blue;
+            background-color: blue;
             color: azure;
             border: none;
             border-radius: 5px;
@@ -87,17 +87,16 @@ math.html
         .result {
             margin-top: 20px;
             padding: 10px;
-            background:blue;
-            border: 1px ;
+            background: blue;
             border-radius: 5px;
-            color: brown;
+            color: white;
             text-align: center;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Power</h1>
+        <h1>Power Calculator</h1>
         <form id="powerForm">
             <label for="intensity">Intensity (I) in Amps:</label>
             <input type="number" id="intensity" step="any" required>
@@ -109,7 +108,25 @@ math.html
         </form>
         <div id="result" class="result" style="display: none;"></div>
     </div>
-</body
+
+    <script>
+        document.getElementById("powerForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            const intensity = parseFloat(document.getElementById("intensity").value);
+            const resistance = parseFloat(document.getElementById("resistance").value);
+
+            if (!isNaN(intensity) && !isNaN(resistance)) {
+                const power = intensity ** 2 * resistance; // P = I² * R
+                const resultDiv = document.getElementById("result");
+                resultDiv.textContent = `Power (P) = ${power.toFixed(2)} Watts`;
+                resultDiv.style.display = "block";
+            } else {
+                alert("Please enter valid numbers for intensity and resistance.");
+            }
+        });
+    </script>
+</body>
 </html>
 
 views.py
@@ -148,10 +165,13 @@ urlpatterns = [
 ```
 
 ## SERVER SIDE PROCESSING:
+![Screenshot (52)](https://github.com/user-attachments/assets/e40b7186-a0e3-4a58-8f93-1f21d82c651c)
+
 
 
 ## HOMEPAGE:
 
+![Screenshot (51)](https://github.com/user-attachments/assets/681bc06f-6629-4bc2-adea-2a60b53df014)
 
 ## RESULT:
 The program for performing server side processing is completed successfully.
