@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Power Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: burlywood;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            
+            max-width: 400px;
+            margin: auto;
+            background: beige;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #555;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: blue;
+            color: azure;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: burlywood;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background: blue;
+            border-radius: 5px;
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Power Calculator</h1>
+        <form id="powerForm">
+            <label for="intensity">Intensity (I) in Amps:</label>
+            <input type="number" id="intensity" step="any" required>
+
+            <label for="resistance">Resistance (R) in Ohms:</label>
+            <input type="number" id="resistance" step="any" required>
+
+            <button type="submit">Calculate Power</button>
+        </form>
+        <div id="result" class="result" style="display: none;"></div>
+    </div>
+
+    <script>
+        document.getElementById("powerForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            const intensity = parseFloat(document.getElementById("intensity").value);
+            const resistance = parseFloat(document.getElementById("resistance").value);
+
+            if (!isNaN(intensity) && !isNaN(resistance)) {
+                const power = intensity ** 2 * resistance; // P = I² * R
+                const resultDiv = document.getElementById("result");
+                resultDiv.textContent = `Power (P) = ${power.toFixed(2)} Watts`;
+                resultDiv.style.display = "block";
+            } else {
+                alert("Please enter valid numbers for intensity and resistance.");
+            }
+        });
+    </script>
+</body>
+</html>
