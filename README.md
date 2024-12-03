@@ -34,98 +34,62 @@ Publish the website in the given URL.
 ## PROGRAM :
 ```
 math.html
-
-<!DOCTYPE html>
 <html>
 <head>
-    <title>Power Calculator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: burlywood;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            
-            max-width: 400px;
-            margin: auto;
-            background: beige;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        label {
-            display: block;
-            margin-top: 10px;
-            color: #555;
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 20px;
-            background-color: blue;
-            color: azure;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: burlywood;
-        }
-        .result {
-            margin-top: 20px;
-            padding: 10px;
-            background: blue;
-            border-radius: 5px;
-            color: white;
-            text-align: center;
-        }
-    </style>
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<title>Power</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<style type="text/css">
+body {
+    background-color:  turquoise;
+}
+.edge {
+    width: 100%;
+    padding-top: 250px;
+    text-align: center;
+}
+.box {
+    display: inline-block;
+    border: thick double rgb(59, 8, 116);
+    width: 500px;
+    min-height: 300px;
+    font-size: 20px;
+    background-color: azure;
+}
+.formelt {
+    color: black;
+    text-align: center;
+    margin-top: 7px;
+    margin-bottom: 6px;
+}
+h1 {
+    color: black;
+    padding-top: 20px;
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>Power Calculator</h1>
-        <form id="powerForm">
-            <label for="intensity">Intensity (I) in Amps:</label>
-            <input type="number" id="intensity" step="any" required>
-
-            <label for="resistance">Resistance (R) in Ohms:</label>
-            <input type="number" id="resistance" step="any" required>
-
-            <button type="submit">Calculate Power</button>
+<div class="edge">
+    <div class="box">
+        <h1>Power</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="formelt">
+                Intensity (I): <input type="text" name="Intensity" value="{{Intensity}}"> w/m2<br/>
+            </div>
+            <div class="formelt">
+                Resistance (R): <input type="text" name="Resistance" value="{{Resistance}}"> Ω<br/>
+            </div>
+            <div class="formelt">
+                <input type="submit" value="Calculate"><br/>
+            </div>
+            <div class="formelt">
+                Power (P): <input type="text" name="Power" value="{{Power}}"> W<br/>
+            </div>
         </form>
-        <div id="result" class="result" style="display: none;"></div>
     </div>
-
-    <script>
-        document.getElementById("powerForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-            
-            const intensity = parseFloat(document.getElementById("intensity").value);
-            const resistance = parseFloat(document.getElementById("resistance").value);
-
-            if (!isNaN(intensity) && !isNaN(resistance)) {
-                const power = intensity ** 2 * resistance; // P = I² * R
-                const resultDiv = document.getElementById("result");
-                resultDiv.textContent = `Power (P) = ${power.toFixed(2)} Watts`;
-                resultDiv.style.display = "block";
-            } else {
-                alert("Please enter valid numbers for intensity and resistance.");
-            }
-        });
-    </script>
+</div>
 </body>
 </html>
 
@@ -165,13 +129,10 @@ urlpatterns = [
 ```
 
 ## SERVER SIDE PROCESSING:
-![Screenshot (52)](https://github.com/user-attachments/assets/e40b7186-a0e3-4a58-8f93-1f21d82c651c)
-
-
+![Screenshot (61)](https://github.com/user-attachments/assets/2d2e01a5-7a77-46a9-b43d-5283139564e3)
 
 ## HOMEPAGE:
-
-![Screenshot (51)](https://github.com/user-attachments/assets/681bc06f-6629-4bc2-adea-2a60b53df014)
+![Screenshot (60)](https://github.com/user-attachments/assets/194c9fe0-c0f6-4905-8fe4-99fd785cad15)
 
 ## RESULT:
 The program for performing server side processing is completed successfully.
